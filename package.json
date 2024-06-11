@@ -3,7 +3,6 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "predev": "cp -r ../../remix-run/react-router-cloudflare/packages/*/dist ./node_modules/",
     "build": "react-router build",
     "deploy": "npm run build && wrangler pages deploy",
     "dev": "react-router dev",
