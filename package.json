@@ -13,15 +13,17 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@react-router/server-runtime": "0.0.0-nightly-1974c2661-20240524",
+    "@react-router/server-runtime": "0.0.0-nightly-09b52e491-20240606",
     "isbot": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "0.0.0-nightly-09b52e491-20240606"
+    "react-router": "0.0.0-nightly-09b52e491-20240606",
+    "set-cookie-parser": "^2.6.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240512.0",
     "@react-router/dev": "0.0.0-nightly-09b52e491-20240606",
+    "@react-router/node": "0.0.0-nightly-09b52e491-20240606",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "node-fetch": "^3.3.2",

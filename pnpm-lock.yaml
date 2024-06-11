@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@react-router/server-runtime':
-    specifier: 0.0.0-nightly-1974c2661-20240524
-    version: 0.0.0-nightly-1974c2661-20240524(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
+    specifier: 0.0.0-nightly-09b52e491-20240606
+    version: 0.0.0-nightly-09b52e491-20240606(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
   isbot:
     specifier: ^4.1.0
     version: 4.4.0
@@ -20,6 +20,9 @@ dependencies:
   react-router:
     specifier: 0.0.0-nightly-09b52e491-20240606
     version: 0.0.0-nightly-09b52e491-20240606(react-dom@18.3.1)(react@18.3.1)
+  set-cookie-parser:
+    specifier: ^2.6.0
+    version: 2.6.0
 
 devDependencies:
   '@cloudflare/workers-types':
@@ -28,6 +31,9 @@ devDependencies:
   '@react-router/dev':
     specifier: 0.0.0-nightly-09b52e491-20240606
     version: 0.0.0-nightly-09b52e491-20240606(react-dom@18.3.1)(react-router@0.0.0-nightly-09b52e491-20240606)(react@18.3.1)(typescript@5.4.5)(vite@5.2.13)
+  '@react-router/node':
+    specifier: 0.0.0-nightly-09b52e491-20240606
+    version: 0.0.0-nightly-09b52e491-20240606(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
   '@types/react':
     specifier: ^18.2.20
     version: 18.3.3
@@ -1083,28 +1089,6 @@ packages:
     transitivePeerDependencies:
       - react
       - react-dom
-    dev: true
-
-  /@react-router/server-runtime@0.0.0-nightly-1974c2661-20240524(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5):
-    resolution: {integrity: sha512-U4UD2eEXeMAhBSQJE0nc5+UdZE06KhUmF00hgdYKKfJawMzPLJX5pXIbp6Jzl0jtwWDnHXZHftIrGtGVYLKw0w==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      typescript: ^5.1.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@types/cookie': 0.6.0
-      '@web3-storage/multipart-parser': 1.0.0
-      cookie: 0.6.0
-      react-router: 0.0.0-nightly-1974c2661-20240524(react-dom@18.3.1)(react@18.3.1)
-      source-map: 0.7.4
-      turbo-stream: 2.2.0
-      typescript: 5.4.5
-    transitivePeerDependencies:
-      - react
-      - react-dom
-    dev: false
 
   /@rollup/rollup-android-arm-eabi@4.18.0:
     resolution: {integrity: sha512-Tya6xypR10giZV1XzxmH5wr25VcZSncG0pZIjfePT0OVBvqNEurzValetGNarVrGiq66EBVAFn15iYX4w6FKgQ==}
@@ -2157,21 +2141,6 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
       turbo-stream: 2.2.0
 
-  /react-router@0.0.0-nightly-1974c2661-20240524(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-5qYHwwxxNdFZ4G8kJAxo/N65nBdZkvMhKkLG+mTsZuN6sfnzNBVybEQbOHZrqVXL6xZh4NjIPUt7IXF1zGkQqA==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      react: '>=16.8'
-      react-dom: '>=16.8'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-    dependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      turbo-stream: 2.2.0
-    dev: false
-
   /react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
@@ -2293,7 +2262,6 @@ packages:
 
   /set-cookie-parser@2.6.0:
     resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
-    dev: true
 
   /shebang-command@2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}

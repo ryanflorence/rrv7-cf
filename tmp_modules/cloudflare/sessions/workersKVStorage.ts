@@ -1,18 +1,23 @@
-/**
- * @react-router/cloudflare v0.0.0
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */
-'use strict';
+import type {
+  SessionStorage,
+  SessionIdStorageStrategy,
+  SessionData,
+} from "@react-router/server-runtime";
 
-Object.defineProperty(exports, '__esModule', { value: true });
+import { createSessionStorage } from "../implementations";
 
-var implementations = require('../implementations.js');
+interface WorkersKVSessionStorageOptions {
+  /**
+   * The Cookie used to store the session id on the client, or options used
+   * to automatically create one.
+   */
+  cookie?: SessionIdStorageStrategy["cookie"];
+
+  /**
+   * The KVNamespace used to store the sessions.
+   */
+  kv: KVNamespace;
+}
 
 /**
  * Creates a SessionStorage that stores session data in the Clouldflare KV Store.
@@ -20,11 +25,14 @@ var implementations = require('../implementations.js');
  * The advantage of using this instead of cookie session storage is that
  * KV Store may contain much more data than cookies.
  */
-function createWorkersKVSessionStorage({
+export function createWorkersKVSessionStorage<
+  Data = SessionData,
+  FlashData = Data
+>({
   cookie,
-  kv
-}) {
-  return implementations.createSessionStorage({
+  kv,
+}: WorkersKVSessionStorageOptions): SessionStorage<Data, FlashData> {
+  return createSessionStorage({
     cookie,
     async createData(data, expires) {
       while (true) {
@@ -34,32 +42,39 @@ function createWorkersKVSessionStorage({
         // than the maximum number of files allowed on an NTFS or ext4 volume
         // (2^32). However, the larger id space should help to avoid collisions
         // with existing ids when creating new sessions, which speeds things up.
-        let id = [...randomBytes].map(x => x.toString(16).padStart(2, "0")).join("");
+        let id = [...randomBytes]
+          .map((x) => x.toString(16).padStart(2, "0"))
+          .join("");
+
         if (await kv.get(id, "json")) {
           continue;
         }
+
         await kv.put(id, JSON.stringify(data), {
-          expiration: expires ? Math.round(expires.getTime() / 1000) : undefined
+          expiration: expires
+            ? Math.round(expires.getTime() / 1000)
+            : undefined,
         });
+
         return id;
       }
     },
     async readData(id) {
       let session = await kv.get(id);
+
       if (!session) {
         return null;
       }
+
       return JSON.parse(session);
     },
     async updateData(id, data, expires) {
       await kv.put(id, JSON.stringify(data), {
-        expiration: expires ? Math.round(expires.getTime() / 1000) : undefined
+        expiration: expires ? Math.round(expires.getTime() / 1000) : undefined,
       });
     },
     async deleteData(id) {
       await kv.delete(id);
-    }
+    },
   });
 }
-
-exports.createWorkersKVSessionStorage = createWorkersKVSessionStorage;
